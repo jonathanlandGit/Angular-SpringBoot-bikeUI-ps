@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <a class="btn btn=primary" routerLink="/">Back to New Registration</a>
+  </div>
+
+  <div id="turbo-table">
+    <p-table [value]="bikes">
+      <ng-template pTemplate="header">
+        <table class="table table-bordered table-inverse">
+          <tr>
+            <th>Owner Name</th>
+            <th>Email</th>
+            <th>Model</th>
+            <th class="text-right">Purchase Price</th>
+          </tr>
+          <tbody *ngIf="bikes">
+            <tr *ngFor="let bike of bikes">
+              <td>
+                <a [routerLink]="['/admin/view', bike.id]">{{bike.name}}</a>
+              </td>
+              <td>
+                {{bike.email}}
+              </td>
+              <td>
+                {{bike.model}}
+              </td>
+              <td class="text-right">
+                {{bike.purchasePrice}}
+              </td>
+              <td>
+                <button (click)="bike.isEditable=!bike.isEditable" *ngIf="!bike.isEditable">Edit</button>
+                <button *ngIf="bike.isEditable" (click)="bike.isEditable=!bike.isEditable">Save</button>
+              </td>
+              <td><a routerLink="/admin/view/{{bike.id}}">Edit</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
